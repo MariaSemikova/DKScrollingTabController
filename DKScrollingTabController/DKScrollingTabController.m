@@ -6,6 +6,8 @@
 
 #import "DKScrollingTabController.h"
 
+#define topSelectedViewHeight 3
+
 @interface DKScrollingTabController ()
 @property (nonatomic,strong) UIButton *currentButton;
 @property (nonatomic,strong) UIView *indicatorView;
@@ -230,6 +232,17 @@
     self.underlineIndicatorOffset = 0;
     self.startingIndex = 0;
     self.buttonTitleEdgeInsets = UIEdgeInsetsZero;
+    self.view.translatesAutoresizingMaskIntoConstraints = NO;
+    
+    self.delegate = self;
+    [self didMoveToParentViewController:self];
+    
+    self.selectedBackgroundColor = [UIColor whiteColor];
+    self.unselectedBackgroundColor = [UIColor clearColor];
+    self.selectedTextColor = [UIColor blackColor];
+    UIColor* unselectedTextColor = [UIColor transparenceWhite];
+    self.selectionFont = [UIFont tabControllerButtonFont];
+    self.unselectedTextColor = unselectedTextColor;
 }
 
 
@@ -285,6 +298,12 @@
             }];
         }
     }
+    
+    CGFloat topSelectedViewWidth = buttonFrame.size.width;
+    
+    UIView *topSelectedView = [[UIView alloc] initWithFrame: CGRectMake(0,0,topSelectedViewWidth,topSelectedViewHeight);
+    topSelectedView.backgroundColor = [UIColor malibuColor];
+    [button addSubview: topSelectedView];
     
     CGFloat offset = _buttonInset * 1.5;
     if (offset==0) {
