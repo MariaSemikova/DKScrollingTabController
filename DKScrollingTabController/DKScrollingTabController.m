@@ -304,8 +304,8 @@
     CGFloat topSelectedViewWidth = button.frame.size.width;
     
     self.topSelectedView = [[UIView alloc] initWithFrame: CGRectMake(0,0,topSelectedViewWidth,topSelectedViewHeight)];
-    topSelectedView.backgroundColor = [UIColor colorWithRed:0.36 green:0.71 blue:0.91 alpha:1];
-    [button addSubview: topSelectedView];
+    self.topSelectedView.backgroundColor = [UIColor colorWithRed:0.36 green:0.71 blue:0.91 alpha:1];
+    [button addSubview: self.topSelectedView];
     
     CGFloat offset = _buttonInset * 1.5;
     if (offset==0) {
