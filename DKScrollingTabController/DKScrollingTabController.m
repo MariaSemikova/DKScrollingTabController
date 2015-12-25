@@ -11,6 +11,7 @@
 @interface DKScrollingTabController ()
 @property (nonatomic,strong) UIButton *currentButton;
 @property (nonatomic,strong) UIView *indicatorView;
+@property (nonatomic,strong) UIView *topSelectedView;
 @end
 
 @implementation DKScrollingTabController
@@ -171,6 +172,7 @@
 
 
 - (void)selectNone {
+    [self.topSelectedView removeFromSuperview];
     UIColor *unselectedColor;
     if (_unselectedTextColor) {
         unselectedColor = _unselectedTextColor;
@@ -301,7 +303,7 @@
     
     CGFloat topSelectedViewWidth = button.frame.size.width;
     
-    UIView *topSelectedView = [[UIView alloc] initWithFrame: CGRectMake(0,0,topSelectedViewWidth,topSelectedViewHeight)];
+    self.topSelectedView = [[UIView alloc] initWithFrame: CGRectMake(0,0,topSelectedViewWidth,topSelectedViewHeight)];
     topSelectedView.backgroundColor = [UIColor colorWithRed:0.36 green:0.71 blue:0.91 alpha:1];
     [button addSubview: topSelectedView];
     
